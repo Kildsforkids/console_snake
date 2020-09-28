@@ -27,10 +27,16 @@ namespace Figures
             Console.Write(sym);
         }
 
-        public void Move()
+        public void Move(Direction dir)
         {
             Clear();
-            x++;
+            switch (dir)
+            {
+                case Direction.Left: x--; break;
+                case Direction.Right: x++; break;
+                case Direction.Up: y--; break;
+                case Direction.Down: y++; break;
+            }
             Draw();
         }
     }

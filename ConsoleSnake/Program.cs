@@ -18,13 +18,45 @@ namespace ConsoleSnake
             vLine.Draw();
             vLine2.Draw();
 
+            //Console.ReadKey();
+
             Point p = new Point(2, 3, '*');
             p.Draw();
 
+            Random rand = new Random();
+            int x = rand.Next(5, 10);
+            int y = rand.Next(5, 10);
+
+            Point p2 = new Point(x, y, '@');
+            p2.Draw();
+
+            var dir = Direction.Right;
+
             while (true)
             {
+                if (Console.KeyAvailable)
+                {
+                    var key = Console.ReadKey();
+
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.LeftArrow:
+                            dir = Direction.Left;
+                            break;
+                        case ConsoleKey.RightArrow:
+                            dir = Direction.Right;
+                            break;
+                        case ConsoleKey.UpArrow:
+                            dir = Direction.Up;
+                            break;
+                        case ConsoleKey.DownArrow:
+                            dir = Direction.Down;
+                            break;
+                    }
+                }
+
                 Thread.Sleep(100);
-                p.Move();
+                p.Move(dir);
             }
             
             Console.ReadLine();
